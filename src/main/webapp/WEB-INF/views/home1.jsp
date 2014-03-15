@@ -8,6 +8,5 @@
  
 	<a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
  
- 	<a href="<c:url value="/home1" />" > home1</a>
- 	</body>
+</body>
 </html>

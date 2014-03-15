@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	accessdenied.jsp
 </h1>
-
+<div>	accessdenied.jsp	</div>
 </body>
 </html>

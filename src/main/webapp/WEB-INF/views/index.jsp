@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>
-	logout
+	index
 </h1>
-<div>	logout	</div>
+<div>	index	</div>
 </body>
 </html>

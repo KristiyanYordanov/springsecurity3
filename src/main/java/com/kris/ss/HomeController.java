@@ -1,13 +1,11 @@
 package com.kris.ss;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.security.Principal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,27 +20,47 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = {"/","/home"})
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	@RequestMapping(value = "/")
+	public String printWelcome(ModelMap model, Principal principal ) {
+		String name = principal.getName();
+		model.addAttribute("username", name);
+		model.addAttribute("message", "Spring Security Custom Form example");
 		return "home";
+ 
 	}
 	
-	@RequestMapping(value = "next", method = RequestMethod.GET)
-	public String home1(Locale locale, Model model) {
+	@RequestMapping(value = "/home")
+	public String home(ModelMap model, Principal principal ) {
+ 
+		String name = principal.getName();
+		model.addAttribute("username", name);
+		model.addAttribute("message", "Spring Security Custom Form example");
+		return "home";
+ 
+	}
+ 
+	@RequestMapping(value="/home1", method = RequestMethod.GET)
+	public String home1(ModelMap model) {
 		return "home1";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public String login(ModelMap model) {
 		return "login";
+	}
+ 
+	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
+	public String loginerror(ModelMap model) {
+ 
+		model.addAttribute("error", "true");
+		return "login";
+ 
+	}
+ 
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+ 
+		return "login";
+ 
 	}
 }
