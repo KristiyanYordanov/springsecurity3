@@ -46,8 +46,7 @@
 				</td>
 			</tr>
 		</table>
+ 
 	</form>
-	<br>
-		<a href="<c:url value="/register" />" > Register</a>
 </body>
 </html>

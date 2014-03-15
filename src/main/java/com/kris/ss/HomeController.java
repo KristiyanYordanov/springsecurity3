@@ -31,7 +31,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home")
 	public String home(ModelMap model, Principal principal ) {
- 
 		String name = principal.getName();
 		model.addAttribute("username", name);
 		model.addAttribute("message", "Spring Security Custom Form example");
@@ -44,23 +43,19 @@ public class HomeController {
 		return "home1";
 	}
 	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public String register(ModelMap model) {
+		return "register";
+	}
+	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
 		return "login";
 	}
  
-	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-	public String loginerror(ModelMap model) {
- 
-		model.addAttribute("error", "true");
-		return "login";
- 
-	}
  
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
- 
 		return "login";
- 
 	}
 }

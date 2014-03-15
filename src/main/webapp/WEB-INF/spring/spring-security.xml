@@ -6,19 +6,31 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
 
+	<!-- login page is not secured, can be accessed from all users -->
 	<http pattern="/login*" security="none" />
+	<!-- all content in resources folder can be accessed from all users. folder for css, img and js -->
 	<http pattern="/resources/**" security="none" />
+	<http pattern="/register" security="none" />
 	<http>
-		<intercept-url pattern="/**" access="ROLE_USER" />
-		<form-login login-page="/login" default-target-url="/home"
+		<!-- Which says that we want all URLs within our application to be secured, requiring the role ROLE_USER to access them-->
+		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+		<!-- only user with role_user can access the application-->
+		<form-login login-page="/login"  default-target-url="/home"
 		always-use-default-target="true" />
-		<logout logout-success-url="/login" />
+		<logout  delete-cookies="JSESSIONID" logout-success-url="/login" />
+		<!-- detect the submission of an invalid session ID and redirect to login -->
+		 <session-management invalid-session-url="/login" session-fixation-protection="newSession" >
+			 <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+  		 </session-management>
 	</http>
+
+<global-method-security secured-annotations="enabled" />
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider>
 			<user-service>
 				<user name="user" password="pass" authorities="ROLE_USER" />
+				<user name="user1" password="pass" authorities="ROLE_ADMIN" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
