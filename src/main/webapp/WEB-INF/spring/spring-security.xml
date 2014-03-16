@@ -8,29 +8,40 @@
 
 	<!-- login page is not secured, can be accessed from all users -->
 	<http pattern="/login*" security="none" />
-	<!-- all content in resources folder can be accessed from all users. folder for css, img and js -->
+	<!-- all content in resources folder can be accessed from all users. folder 
+		for css, img and js -->
 	<http pattern="/resources/**" security="none" />
 	<http pattern="/register" security="none" />
 	<http>
-		<!-- Which says that we want all URLs within our application to be secured, requiring the role ROLE_USER to access them-->
+		<!-- Which says that we want all URLs within our application to be secured, 
+			requiring the role ROLE_USER to access them -->
 		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
-		<!-- only user with role_user can access the application-->
-		<form-login login-page="/login"  default-target-url="/home"
-		always-use-default-target="true" />
-		<logout  delete-cookies="JSESSIONID" logout-success-url="/login" />
+		<!-- only user with role_user can access the application -->
+		<form-login login-page="/login" default-target-url="/home"
+			always-use-default-target="true" />
+		<logout  invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/login" />
 		<!-- detect the submission of an invalid session ID and redirect to login -->
-		 <session-management invalid-session-url="/login" session-fixation-protection="newSession" >
-			 <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
-  		 </session-management>
+		<session-management invalid-session-url="/login"
+			session-fixation-protection="newSession">
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</session-management>
 	</http>
 
-<global-method-security secured-annotations="enabled" />
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+	
 
-	<authentication-manager alias="authenticationManager">
+	<beans:bean name="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<authentication-manager>
 		<authentication-provider>
+			<password-encoder ref="bcryptEncoder" />
 			<user-service>
-				<user name="user" password="pass" authorities="ROLE_USER" />
-				<user name="user1" password="pass" authorities="ROLE_ADMIN" />
+				<user name="user" password="$2a$12$ivaXgiRpXqSc0B4035oE5.a6yi3Ezz3siRZen9kcz.3NS5QPEKG2S"
+					authorities="ROLE_USER, ROLE_ADMIN" />
+				<user name="user1" password="$2a$12$wgyQ4ARuR2uf1OQgqIbkiOdPp39l3SQDmiaPjbNXnKzzpbQbnoTju"
+					authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
