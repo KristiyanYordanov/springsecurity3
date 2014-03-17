@@ -5,6 +5,8 @@
 	<h3>Username : ${username}</h3>
 
 	<a href="<c:url value="/home1" />"> home1</a>
+	
+	<a href="<c:url value="/admin/home1" />"> admin home1</a>
 
 	<form name='fo' action="<c:url value='j_spring_security_logout' />"
 		method='POST'>
