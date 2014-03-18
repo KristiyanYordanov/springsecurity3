@@ -14,9 +14,9 @@
 	
 	<http create-session="ifRequired" disable-url-rewriting="true" use-expressions="true">
 	<!-- TODO access not working correctly -->
-		<intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/user/*" access="hasRole('ROLE_USER')" />	
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
 		<form-login login-page="/login" default-target-url="/home" always-use-default-target="true" authentication-failure-url="/login?authFailed=true" />
 		<logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/login" />
 

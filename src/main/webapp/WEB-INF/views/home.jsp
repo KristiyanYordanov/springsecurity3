@@ -8,9 +8,9 @@
 	<a href="<c:url value="/home1" />"> admin home only</a>
 	<br>
 	
-	<a href="<c:url value="adminList" />"> admin list</a>
+	<a href="<c:url value="/admin/adminList" />"> admin list</a>
 	<br>
-	<a href="<c:url value="userList" />"> user list</a>
+	<a href="<c:url value="/user/userList" />"> user list</a>
 	<br>
 
 	<form name='fo' action="<c:url value='j_spring_security_logout' />"

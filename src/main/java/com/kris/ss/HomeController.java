@@ -46,6 +46,11 @@ public class HomeController {
 		return "home1";
 	}
 	
+	@RequestMapping(value="/home2", method = RequestMethod.GET)
+	public String home2(ModelMap model) {
+		return "home2";
+	}
+	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public String register(ModelMap model) {
 		return "register";
@@ -61,15 +66,25 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/adminList", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/adminList", method = RequestMethod.GET)
 	public String adminList(ModelMap model) {
 		return "admin/adminList";
 	}
 	
 	
-	@RequestMapping(value="/userList", method = RequestMethod.GET)
+	@RequestMapping(value="/user/userList", method = RequestMethod.GET)
 	public String userList(ModelMap model) {
 		return "user/userList";
+	}
+	
+	@RequestMapping(value="/error500", method = RequestMethod.GET)
+	public String error500(ModelMap model) {
+		return "error500";
+	}
+	
+	@RequestMapping(value="/error404", method = RequestMethod.GET)
+	public String error404(ModelMap model) {
+		return "error404";
 	}
  
  
