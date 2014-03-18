@@ -51,9 +51,25 @@ public class HomeController {
 		return "register";
 	}
 	
+	@RequestMapping(value="/accessdenied", method = RequestMethod.GET)
+	public String accessdenied(ModelMap model) {
+		return "accessdenied";
+	}
+	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
 		return "login";
+	}
+	
+	@RequestMapping(value="/adminList", method = RequestMethod.GET)
+	public String adminList(ModelMap model) {
+		return "admin/adminList";
+	}
+	
+	
+	@RequestMapping(value="/userList", method = RequestMethod.GET)
+	public String userList(ModelMap model) {
+		return "user/userList";
 	}
  
  

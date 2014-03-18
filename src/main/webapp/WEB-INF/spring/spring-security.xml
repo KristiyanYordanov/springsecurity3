@@ -5,29 +5,27 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<!-- login page is not secured, can be accessed from all users -->
 	<http pattern="/login*" security="none" />
-	<!-- all content in resources folder can be accessed from all users. folder for css, img and js -->
 	<http pattern="/resources/**" security="none" />
 	<http pattern="/register" security="none" />
 	<http pattern="/accessdenied" security="none" />
-	<http create-session="ifRequired" disable-url-rewriting="true">
-		<access-denied-handler error-page="/accessdenied" />
-		<intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
-		<!-- Which says that we want all URLs within our application to be secured, 
-			requiring the role ROLE_USER to access them -->
-		<intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_USER" />
-
-		<!-- only user with role_user can access the application -->
+	<http pattern="/error404" security="none" />
+	<http pattern="/error500" security="none" />
+	
+	<http create-session="ifRequired" disable-url-rewriting="true" use-expressions="true">
+	<!-- TODO access not working correctly -->
+		<intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/*" access="hasRole('ROLE_USER')" />	
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<form-login login-page="/login" default-target-url="/home" always-use-default-target="true" authentication-failure-url="/login?authFailed=true" />
 		<logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/login" />
 
-		<!-- detect the submission of an invalid session ID and redirect to login -->
 		<session-management invalid-session-url="/login"
 			session-fixation-protection="migrateSession">
 			<concurrency-control max-sessions="10"
 				error-if-maximum-exceeded="true" expired-url="/login" session-registry-alias="sessionRegistry" />
 		</session-management>
+		<access-denied-handler error-page="/accessdenied" />
 	</http>
 
 
@@ -48,6 +46,9 @@
 				<user name="user1"
 					password="$2a$12$wgyQ4ARuR2uf1OQgqIbkiOdPp39l3SQDmiaPjbNXnKzzpbQbnoTju"
 					authorities="ROLE_USER" />
+				<user name="user2"
+					password="$2a$12$wgyQ4ARuR2uf1OQgqIbkiOdPp39l3SQDmiaPjbNXnKzzpbQbnoTju"
+					authorities="" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
