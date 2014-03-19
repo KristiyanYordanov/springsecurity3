@@ -7,6 +7,8 @@
 	
 	<a href="<c:url value="/home1" />"> admin home only</a>
 	<br>
+	<a href="<c:url value="/home2" />"> admin home only can see "Hi admin"</a>
+	<br>
 	
 	<a href="<c:url value="/admin/adminList" />"> admin list</a>
 	<br>
