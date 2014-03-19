@@ -2,8 +2,7 @@ package com.kris.ss;
 
 import java.security.Principal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+	
+	private static final Logger logger = Logger.getLogger(HomeController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -27,6 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String printWelcome(ModelMap model, Principal principal) {
 		String name = principal.getName();
+		logger.debug(name);
 		model.addAttribute("username", name);
 		model.addAttribute("message", "Spring Security Custom Form example");
 		return "home";
