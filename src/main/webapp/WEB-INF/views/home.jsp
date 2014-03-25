@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<body onload="getCookie()">
 	<h3>Message : ${message}</h3>
 	<h3>Username : ${username}</h3>
 	<h3>Username : ${username}</h3>
@@ -25,17 +25,7 @@
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
-	function force_logout() {
-		$.ajax({
-			 type: "GET",  
-			    url: "/ss/j_spring_security_logout",
-			    data: "dfgg", 
-			    success: function(data){  
-			    },
-			    error: function(X) { 
-			    	console.log(x);
-			    }       
-		});
+	function getCookie() {
 	}
 </script>
 </html>

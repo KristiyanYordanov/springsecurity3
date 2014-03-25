@@ -23,7 +23,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model, Principal principal) {
 		String name = principal.getName();
 		logger.debug(name);
@@ -33,7 +33,7 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value = "/home")
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap model, Principal principal) {
 		Authentication authentication = SecurityContextHolder.getContext()
 				.getAuthentication();
