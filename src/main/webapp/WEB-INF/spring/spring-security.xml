@@ -22,7 +22,7 @@
 		<!-- create new clean session when user logs in -->
 		<session-management invalid-session-url="/login"
 			session-fixation-protection="newSession ">
-			<concurrency-control max-sessions="3"
+			<concurrency-control max-sessions="10"
 				error-if-maximum-exceeded="false" expired-url="/login"/>
 		</session-management>
 		<access-denied-handler error-page="/accessdenied" />

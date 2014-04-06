@@ -27,7 +27,6 @@ body {
 			<h1>
 				<strong>Login Form</strong>
 			</h1>
-			<h2>Spring security tutorial</h2>
 
 			<div class="support-note">
 				<span class="note-ie">Sorry, only modern browsers.</span>

@@ -17,6 +17,9 @@
 	<br>
 	<a href="<c:url value="/user/userList" />"> user list</a>
 	<br>
+	<br>
+	<a href="<c:url value="/players/user/player" />"> player</a>
+	<br>
 
 	<form name='fo' action="<c:url value='/j_spring_security_logout' />"
 		method='POST'>
