@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
@@ -74,11 +76,14 @@ public class PlayerModel {
 		}
 		return res;
 	}
-	
+	@Autowired
+    PlayerRepository playerRepository;
+
 	public static void main(String[] argc) throws Exception
 	{
-		PlayerModel m= new PlayerModel();
-		m.readWithCsvBeanReader();
+//		PlayerModel m= new PlayerModel();
+//		m.readWithCsvBeanReader();
+		
 	}
 	
 	public static Player load(Object obj, Object stringObj)

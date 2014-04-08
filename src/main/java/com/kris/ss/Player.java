@@ -1,8 +1,40 @@
 package com.kris.ss;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Player {
 	//"name","stars","pos","location","height","weight","fortyDash","rating","gradYear"
 	
+	public Player(long id, String name, String location, String pos, int stars,
+			String height, Double fortyDash, int weight, int gradYear,
+			Double rating) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.pos = pos;
+		this.stars = stars;
+		this.height = height;
+		this.fortyDash = fortyDash;
+		this.weight = weight;
+		this.gradYear = gradYear;
+		this.rating = rating;
+	}
+	
+	
+	public Player() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+
 	private String name;
 	private String location;
 	private String pos;

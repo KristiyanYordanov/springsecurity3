@@ -45,8 +45,7 @@ body {
 			<form class="form-2" name='f'
 				action="<c:url value='j_spring_security_check'  />" method='POST'>
 				<h1>
-					<span class="log-in">Log in</span> or <span class="sign-up">sign
-						up</span>
+					<span class="log-in">Log in</span>
 				</h1>
 				<p class="float">
 					<label for="login"><i class="icon-user"></i>Username</label> <input
